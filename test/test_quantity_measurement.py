@@ -68,3 +68,15 @@ class TestQuantityMeasurement:
 
     def test_weight_given_1_kg_and_1_pound_should_compare_and_return_false(self):
         assert not (QuantityMeasurements().compare_weight("kg", "pound", 1, 1))
+
+    def test_temp_given_33decimal8_fahrenheit_and_1_celsius_should_compare_and_return_true(self):
+        assert (QuantityMeasurements().compare_temperature("fahrenheit", "celsius", 33.8, 1))
+
+    def test_temp_given_1celsius_and_33decimal8_fahrenheit_should_compare_and_return_true(self):
+        assert (QuantityMeasurements().compare_temperature("celsius", "fahrenheit", 1, 33.8))
+
+    def test_temp_given_1_fahrenheit_and_1_celsius_should_compare_and_return_false(self):
+        assert not (QuantityMeasurements().compare_temperature("fahrenheit", "celsius", 1, 1))
+
+    def test_temp_given_1_celsius_and_1_fahrenheit_should_compare_and_return_false(self):
+        assert not (QuantityMeasurements().compare_temperature("celsius", "fahrenheit", 1, 1))

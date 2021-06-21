@@ -46,3 +46,27 @@ class QuantityMeasurements:
         except Exception as e:
             print(e)
 
+    @staticmethod
+    def compare_temperature(unit1, unit2, quantity1, quantity2):
+        """
+        :param unit1: unit of 1st temp
+        :param unit2: unit of 2nd temp
+        :param quantity1: 1st temp
+        :param quantity2: 2nd temp
+        :return: equality of the temperatures if both are not null
+        """
+        try:
+            unit_dict = {"celsius": 1, "fahrenheit": 33.8}
+            if quantity1 is not None and quantity2 is not None:
+                quantity1 /= unit_dict[unit1]
+                quantity2 /= unit_dict[unit2]
+                if quantity1 == quantity2:
+                    return True
+                else:
+                    return False
+            else:
+                return None
+        except Exception as e:
+            print(e)
+
+
