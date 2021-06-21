@@ -56,3 +56,15 @@ class TestQuantityMeasurement:
 
     def test_lengths_given_1_yd_and_3_ft_should_compare_and_return_true(self):
         assert (QuantityMeasurements().compare_length("yd", "ft", 1, 3))
+
+    def test_weight_given_2decimal20_pound_and_1_kg_should_compare_and_return_true(self):
+        assert (QuantityMeasurements().compare_weight("pound", "kg", 2.20, 1))
+
+    def test_weight_given_1kg_and_2decimal20_pound_should_compare_and_return_true(self):
+        assert (QuantityMeasurements().compare_weight("kg", "pound", 1, 2.20))
+
+    def test_weight_given_1_pound_and_1_kg_should_compare_and_return_false(self):
+        assert not (QuantityMeasurements().compare_weight("pound", "kg", 1, 1))
+
+    def test_weight_given_1_kg_and_1_pound_should_compare_and_return_false(self):
+        assert not (QuantityMeasurements().compare_weight("kg", "pound", 1, 1))
