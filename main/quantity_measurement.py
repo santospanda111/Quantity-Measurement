@@ -1,59 +1,24 @@
-class Feet:
-    def __init__(self, feet):
-        self.feet = feet
+class QuantityMeasurements:
 
-    def __eq__(self, other):
+    @staticmethod
+    def compare_length(unit1, unit2, quantity1, quantity2):
         """
-        -Here i have used isinstance method will check whether the other value is inch or feet.
-        :param other:
-        :return:Boolean value
+        :param unit1: unit of 1st length
+        :param unit2: unit of 2nd length
+        :param quantity1: 1st length
+        :param quantity2: 2nd length
+        :return: equality of the lengths if both are not null
         """
-        if isinstance(other, Feet):
-            return self.feet == other.feet
-        elif isinstance(other, Inch):
-            return self.feet == other.inch / 12
-        elif isinstance(other, Yard):
-            return self.feet == other.yard * 3
-        return False
-
-
-class Inch:
-    def __init__(self, inch):
-        self.inch = inch
-
-    def __eq__(self, other):
-        """
-        -Here i have used isinstance method will check whether the other value is inch or feet.
-        :param other:
-        :return:Boolean Value
-        """
-        if isinstance(other, Inch):
-            return self.inch == other.inch
-        elif isinstance(other, Feet):
-            return self.inch == other.feet * 12
-        elif isinstance(other, Yard):
-            return self.inch == other.yard * 36
-        return False
-
-
-class Yard:
-    def __init__(self, yard):
-        self.yard = yard
-
-    def __eq__(self, other):
-        """
-        -Here i have used isinstance method will check whether the other value is inch or feet.
-        :param other:
-        :return:Boolean Value
-        """
-        if isinstance(other, Yard):
-            return self.yard == other.yard
-        elif isinstance(other, Feet):
-            return self.yard == other.feet / 3
-        elif isinstance(other, Inch):
-            return self.yard == other.inch / 36
-        return False
-
-
-if __name__ == '__main__':
-    print("Welcome to Quantity_Measurement Program")
+        try:
+            unit_dict = {"ft": 3, "in": 36, "yd": 1}
+            if quantity1 is not None and quantity2 is not None:
+                quantity1 /= unit_dict[unit1]
+                quantity2 /= unit_dict[unit2]
+                if quantity1 == quantity2:
+                    return True
+                else:
+                    return False
+            else:
+                return None
+        except Exception as e:
+            print(e)
