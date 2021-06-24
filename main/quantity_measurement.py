@@ -1,3 +1,9 @@
+import json
+import logging
+
+logger = logging.getLogger()
+
+
 class QuantityMeasurements:
 
     @staticmethod
@@ -11,17 +17,16 @@ class QuantityMeasurements:
         """
         try:
             unit_dict = {"ft": 3, "in": 36, "yd": 1}
+            data_dict = {unit1: quantity1, unit2: quantity2}
+            QuantityMeasurements.json_file_operation(data_dict)
             if quantity1 is not None and quantity2 is not None:
-                quantity1 /= unit_dict[unit1]
-                quantity2 /= unit_dict[unit2]
+                quantity1 /= unit_dict.get(unit1)
+                quantity2 /= unit_dict.get(unit2)
                 if quantity1 == quantity2:
                     return True
-                else:
-                    return False
-            else:
-                return None
+            return False
         except Exception as e:
-            print(e)
+            logger.error(e)
 
     @staticmethod
     def compare_weight(unit1, unit2, quantity1, quantity2):
@@ -34,17 +39,16 @@ class QuantityMeasurements:
         """
         try:
             unit_dict = {"kg": 1, "pound": 2.20}
+            data_dict = {unit1: quantity1, unit2: quantity2}
+            QuantityMeasurements.json_file_operation(data_dict)
             if quantity1 is not None and quantity2 is not None:
-                quantity1 /= unit_dict[unit1]
-                quantity2 /= unit_dict[unit2]
+                quantity1 /= unit_dict.get(unit1)
+                quantity2 /= unit_dict.get(unit2)
                 if quantity1 == quantity2:
                     return True
-                else:
-                    return False
-            else:
-                return None
+            return False
         except Exception as e:
-            print(e)
+            logger.error(e)
 
     @staticmethod
     def compare_temperature(unit1, unit2, quantity1, quantity2):
@@ -57,16 +61,19 @@ class QuantityMeasurements:
         """
         try:
             unit_dict = {"celsius": 1, "fahrenheit": 33.8}
+            data_dict = {unit1: quantity1, unit2: quantity2}
+            QuantityMeasurements.json_file_operation(data_dict)
             if quantity1 is not None and quantity2 is not None:
-                quantity1 /= unit_dict[unit1]
-                quantity2 /= unit_dict[unit2]
+                quantity1 /= unit_dict.get(unit1)
+                quantity2 /= unit_dict.get(unit2)
                 if quantity1 == quantity2:
                     return True
-                else:
-                    return False
-            else:
-                return None
+            return False
         except Exception as e:
-            print(e)
+            logger.error(e)
 
-
+    @staticmethod
+    def json_file_operation(dict_data):
+        with open('D:\PythonBridgelabz\QuantityMeasurement\main\data.json', 'a+') as json_file:
+            json.dump(dict_data, json_file)
+            json_file.write("\n")
